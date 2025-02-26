@@ -53,4 +53,13 @@
       transform: translateY(-20px) scale(var(--scale, 1));
     }
   }
+
+  @keyframes walk {
+    0% {
+      background-image: url('/lovable-uploads/7826c53f-4f91-489c-905e-9747e7407675.png');
+    }
+    50% {
+      background-image: url('/lovable-uploads/2a55080c-802b-484c-848b-c263ea9d03f4.png');
+    }
+  }
 }
