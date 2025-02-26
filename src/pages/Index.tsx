@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
@@ -102,7 +103,7 @@ const Index = () => {
             animationDelay: `${heart.delay}s`,
           }}
         >
-          <Heart className="w-8 h-8 text-chick" />
+          <Heart className="w-8 h-8" style={{ color: '#ea384c' }} />
         </div>
       ))}
 
