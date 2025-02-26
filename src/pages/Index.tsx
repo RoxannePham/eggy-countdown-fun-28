@@ -94,7 +94,7 @@ const Index = () => {
       {hearts.map((heart) => (
         <div
           key={heart.id}
-          className="absolute opacity-10"
+          className="absolute"
           style={{
             left: heart.left,
             top: heart.top,
