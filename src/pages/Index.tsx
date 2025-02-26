@@ -1,10 +1,9 @@
-
 import React, { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import TimerInput from "@/components/TimerInput";
 import CountdownDisplay from "@/components/CountdownDisplay";
-import { Play, Pause, RotateCcw } from "lucide-react";
+import { Play, Pause, RotateCcw, Heart } from "lucide-react";
 
 const Index = () => {
   const [hours, setHours] = useState(0);
@@ -13,6 +12,15 @@ const Index = () => {
   const [timeLeft, setTimeLeft] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
   const { toast } = useToast();
+
+  const hearts = Array.from({ length: 12 }, (_, i) => ({
+    id: i,
+    left: `${Math.random() * 100}%`,
+    top: `${Math.random() * 100}%`,
+    size: Math.random() * 1 + 0.5,
+    delay: Math.random() * 2,
+    duration: Math.random() * 2 + 3,
+  }));
 
   const handleTimeChange = (
     field: "hours" | "minutes" | "seconds",
@@ -81,8 +89,24 @@ const Index = () => {
   }, [isRunning, timeLeft, toast]);
 
   return (
-    <div className="min-h-screen bg-sky flex flex-col items-center justify-center p-4">
-      <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-8 max-w-md w-full space-y-8">
+    <div className="min-h-screen bg-sky flex flex-col items-center justify-center p-4 relative overflow-hidden">
+      {hearts.map((heart) => (
+        <div
+          key={heart.id}
+          className="absolute opacity-10"
+          style={{
+            left: heart.left,
+            top: heart.top,
+            transform: `scale(${heart.size})`,
+            animation: `float ${heart.duration}s ease-in-out infinite`,
+            animationDelay: `${heart.delay}s`,
+          }}
+        >
+          <Heart className="w-8 h-8 text-chick" />
+        </div>
+      ))}
+
+      <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-8 max-w-md w-full space-y-8 relative z-10">
         <h1 className="text-3xl font-bold text-center text-gray-700 mb-8">
           Egg Timer
         </h1>
